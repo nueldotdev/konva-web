@@ -16,11 +16,11 @@ import {
   Users 
 } from "lucide-react";
 
-interface Feature {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-}
+// interface Feature {
+//   icon: React.ReactNode;
+//   title: string;
+//   description: string;
+// }
 
 interface Plan {
   name: string;
@@ -50,7 +50,7 @@ export default function Page() {
                 </span>
               </h1>
               <p className="max-w-[600px] text-gray-400 text-xl">
-                Scan, store, and manage business cards effortlessly. Never lose a contact again with Konva's smart contact management system.
+               { "Scan, store, and manage business cards effortlessly. Never lose a contact again with Konva's smart contact management system."}
               </p>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
@@ -183,7 +183,7 @@ export default function Page() {
             <div className="inline-block rounded-lg bg-red-500/10 px-3 py-1 text-sm text-red-500">Pricing</div>
             <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Simple, transparent pricing</h2>
             <p className="max-w-[900px] mx-auto text-gray-400 md:text-xl">
-              Choose the plan that's right for you
+              {"Choose the plan that's right for you"}
             </p>
           </div>
           <div className="grid gap-8 md:grid-cols-3 max-w-7xl mx-auto">
