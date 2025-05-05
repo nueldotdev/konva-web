@@ -13,7 +13,7 @@ function page() {
             <span className="text-red-600">Digital Contacts</span> Instantly
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Scan, store, and manage business cards effortlessly. Never lose a contact again with Konva's smart contact management system.
+            {"Scan, store, and manage business cards effortlessly. Never lose a contact again with Konva's smart contact management system."}
           </p>
 
           {/* Email Capture Form */}
