@@ -161,14 +161,35 @@ export default function Page() {
                 />
               </div>
               <div className="space-y-6 sm:space-y-8 order-1 lg:order-2">
-                {[1, 2, 3, 4].map((step) => (
+                {[
+                  {
+                    step: 1,
+                    title: "Scan Business Card",
+                    description: "Take a photo of any business card using your phone's camera. Our AI will do the rest."
+                  },
+                  {
+                    step: 2,
+                    title: "Save & Organize",
+                    description: "All contact information is automatically extracted and organized in your digital address book."
+                  },
+                  {
+                    step: 3,
+                    title: "Connect & Share",
+                    description: "Share your digital business card with others via QR code or direct link."
+                  },
+                  {
+                    step: 4,
+                    title: "Grow Your Network",
+                    description: "Maintain relationships with automated follow-ups and connection management."
+                  }
+                ].map(({ step, title, description }) => (
                   <div key={step} className="flex gap-4">
                     <div className="flex h-8 w-8 items-center justify-center rounded-full bg-red-600 text-white">
                       {step}
                     </div>
                     <div>
-                      <h3 className="font-bold text-xl">Step {step}</h3>
-                      <p className="text-gray-400">Description for step {step}</p>
+                      <h3 className="font-bold text-xl">{title}</h3>
+                      <p className="text-gray-400">{description}</p>
                     </div>
                   </div>
                 ))}
@@ -304,7 +325,7 @@ export default function Page() {
                 Modern networking for the digital age. Connect, share, and grow your network effortlessly.
               </p>
             </div>
-            <div className="hidden md:grid gap-8 col-span-2 lg:col-span-3 grid-cols-2 lg:grid-cols-3">
+            <div className=" md:grid gap-8 col-span-2 lg:col-span-3 grid-cols-2 lg:grid-cols-3">
               {[
                 {
                   title: "Product",
