@@ -1,7 +1,35 @@
 'use client'
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 
 function Animation() {
+    const sectionRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.target.classList.contains('animate-text')) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('text-white');
+                            entry.target.classList.remove('text-[#1A1A1A]');
+                        } else {
+                            entry.target.classList.remove('text-white');
+                            entry.target.classList.add('text-[#1A1A1A]');
+                        }
+                    }
+                });
+            },
+            { threshold: 0.5 }
+        );
+
+        const elements = document.getElementsByClassName('animate-text');
+        Array.from(elements).forEach((element) => {
+            observer.observe(element);
+        });
+
+        return () => observer.disconnect();
+    }, []);
+
     const sentences = [
         'You meet someone at an event.',
         'You share your card. Maybe your number.',
@@ -16,47 +44,24 @@ function Animation() {
     ]
 
     return (
-        <div className="h-[400px] mt-12 bg-black overflow-hidden relative">
-            <div className="animate-scroll absolute w-full">
+        <div 
+            ref={sectionRef}
+            className="h-[80vh] mt-8 bg-black relative overflow-y-auto scrollbar-hide"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+            <div className="py-40 px-4">
                 {sentences.map((sentence, index) => (
                     <div 
                         key={index}
-                        className="text-xl md:text-2xl font-medium text-center py-4 animate-color"
-                        style={{
-                            animationDelay: `${index * 0.4}s`
-                        }}
-                    >
-                        {sentence}
-                    </div>
-                ))}
-                {sentences.map((sentence, index) => (
-                    <div 
-                        key={`duplicate-${index}`}
-                        className="text-xl md:text-2xl font-medium text-center py-4 animate-color"
-                        style={{
-                            animationDelay: `${index * 0.6}s`
-                        }}
+                        className="animate-text text-[#1A1A1A] text-xl md:text-2xl font-medium text-center mb-20 transition-colors duration-500"
                     >
                         {sentence}
                     </div>
                 ))}
             </div>
             <style jsx>{`
-                .animate-scroll {
-                    animation: scroll 20s linear infinite;
-                    animation-delay: 0.2s;
-                }
-                .animate-color {
-                    animation: colorChange 20s linear infinite;
-                }
-                @keyframes scroll {
-                    0% { transform: translateY(90%); }
-                    100% { transform: translateY(-100%); }
-                }
-                @keyframes colorChange {
-                    0%, 5% { color: #1A1A1A; }
-                    35% { color: white; }
-                    65%, 100% { color: #1A1A1A; }
+                div::-webkit-scrollbar {
+                    display: none;
                 }
             `}</style>
         </div>

@@ -19,7 +19,7 @@ function page() {
           <span className="block">meet should never</span>
           <span className="block">be forgotten</span>
         </h1>
-        <p className='text-base md:text-lg mt-4 md:mt-6 text-center px-4'>
+        <p className='text-base text-[#000000] md:text-lg mt-4 md:mt-6 text-center px-4'>
           Konva helps you stay in touch after the handshake.<br className="hidden md:block" />
           Share your contact in seconds. No printing. No stress.
         </p>

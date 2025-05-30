@@ -19,3 +19,11 @@ body {
 .animate-float {
     animation: float 10s infinite;
 }
+
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
