@@ -1,66 +1,126 @@
-'use client'
-import React from 'react'
+"use client";
+import React, { useRef, useEffect, useState } from "react";
 
-function Animation() {
-    const sentences = [
-        'You meet someone at an event.',
-        'You share your card. Maybe your number.',
-        'You get home and forget their name.',
-        'It’s not just you.',
-        'Paper cards go missing.',
-        'Names get mixed up.',
-        'Leads disappear.',
-        'In a country where everyone is building something,',
-        'we need better ways to stay connected.',
-        'Konva is here to help.',
-    ]
-
-    return (
-        <div className="h-[400px] mt-12 bg-black overflow-hidden relative">
-            <div className="animate-scroll absolute w-full">
-                {sentences.map((sentence, index) => (
-                    <div 
-                        key={index}
-                        className="text-xl md:text-2xl font-medium text-center py-4 animate-color"
-                        style={{
-                            animationDelay: `${index * 0.4}s`
-                        }}
-                    >
-                        {sentence}
-                    </div>
-                ))}
-                {sentences.map((sentence, index) => (
-                    <div 
-                        key={`duplicate-${index}`}
-                        className="text-xl md:text-2xl font-medium text-center py-4 animate-color"
-                        style={{
-                            animationDelay: `${index * 0.6}s`
-                        }}
-                    >
-                        {sentence}
-                    </div>
-                ))}
-            </div>
-            <style jsx>{`
-                .animate-scroll {
-                    animation: scroll 20s linear infinite;
-                    animation-delay: 0.2s;
-                }
-                .animate-color {
-                    animation: colorChange 20s linear infinite;
-                }
-                @keyframes scroll {
-                    0% { transform: translateY(90%); }
-                    100% { transform: translateY(-100%); }
-                }
-                @keyframes colorChange {
-                    0%, 5% { color: #1A1A1A; }
-                    35% { color: white; }
-                    65%, 100% { color: #1A1A1A; }
-                }
-            `}</style>
-        </div>
-    )
+interface AnimationProps {
+  texts: string[];
+  bgColor?: string;
+  textColor?: string;
 }
+const tences = [
+  "You meet someone at an event.",
+  "You share your card. Maybe your number.",
+  "You get home and forget their name.",
+  "It’s not just you.",
+  "Paper cards go missing.",
+  "Names get mixed up.",
+  "Leads disappear.",
+  "In a country where everyone is building something,",
+  "we need better ways to stay connected.",
+  "Konva is here to help.",
+];
 
-export default Animation
+const Animation: React.FC<AnimationProps> = ({ texts, bgColor, textColor }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+  const [currentLine, setCurrentLine] = useState(-1);
+  const [backgroundColor, setBackgroundColor] = useState(bgColor || "black");
+  const [textCol, setTextCol] = useState(textColor || "#FFFFFF");
+  const [sentences, setSentences] = useState<string[]>(texts);
+
+  useEffect(() => {
+    const observer = new window.IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.2 }
+    );
+    if (containerRef.current) observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (inView) {
+      setCurrentLine(0);
+    } else {
+      setCurrentLine(-1);
+    }
+  }, [inView]);
+
+  useEffect(() => {
+    if (currentLine === -1 || currentLine >= sentences.length) return;
+    const lineLength = sentences[currentLine].length;
+    const delay = 500 + lineLength * 60; // ms
+    const timeout = setTimeout(() => {
+      setCurrentLine((prev) => prev + 1);
+    }, delay);
+    return () => clearTimeout(timeout);
+  }, [currentLine, sentences]);
+
+  return (
+    <div
+      className="h-screen overflow-hidden relative flex items-center justify-center"
+      style={{ backgroundColor: backgroundColor }}
+    >
+      <div ref={containerRef} className="w-[60%] flex flex-col justify-center">
+        {sentences.map((sentence, sIdx) => (
+          <div
+            key={sIdx}
+            className="text-xl md:text-2xl font-medium text-left py-3"
+          >
+            {sentence.split("").map((char, cIdx) => {
+              const style = {
+                color: textCol,
+                animationDelay:
+                  sIdx === currentLine ? `${cIdx * 0.06}s` : undefined,
+              };
+              if (sIdx < currentLine) {
+                return (
+                  <span key={cIdx} className="letter visible" style={style}>
+                    {char === " " ? "\u00A0" : char}
+                  </span>
+                );
+              }
+              if (sIdx === currentLine) {
+                return (
+                  <span key={cIdx} className="letter animating" style={style}>
+                    {char === " " ? "\u00A0" : char}
+                  </span>
+                );
+              }
+              return (
+                <span key={cIdx} className="letter future" style={style}>
+                  {char === " " ? "\u00A0" : char}
+                </span>
+              );
+            })}
+          </div>
+        ))}
+        <style jsx>{`
+          .letter {
+            display: inline-block;
+            transition: opacity 0.7s, filter 0.7s;
+          }
+          .letter.visible {
+            opacity: 1;
+          }
+          .letter.animating {
+            opacity: 0.1;
+            animation: letterInk 1s forwards;
+          }
+          .letter.future {
+            opacity: 0.1;
+          }
+          @keyframes letterInk {
+            from {
+              opacity: 0.1;
+            }
+            to {
+              opacity: 1;
+              filter: blur(0);
+            }
+          }
+        `}</style>
+      </div>
+    </div>
+  );
+};
+
+export default Animation;

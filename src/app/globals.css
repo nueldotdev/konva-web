@@ -5,6 +5,12 @@
   --background-rgb: 255, 255, 255;
 }
 
+* {
+  /* margin: 0;
+  padding: 0; */
+  box-sizing: border-box;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
@@ -18,4 +24,47 @@ body {
 
 .animate-float {
     animation: float 10s infinite;
+}
+
+
+@layer components {
+  .button {
+    @apply px-6 py-3 text-white bg-black rounded-xl font-bold transition hover:scale-105 cursor-pointer active:scale-95;
+    position: relative;
+    z-index: 1;
+    /* Remove default shadow for custom effect */
+    box-shadow: none;
+  }
+
+  .button::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    box-shadow: 0 0 20px 10px #f43f5d73;
+    animation: shadow-move 5s infinite linear;
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  @keyframes shadow-move {
+    0%   { box-shadow: 0 0 20px 10px #f43f5d70; }      /* pink, transparent */
+    25%  { box-shadow: 10px 10px 20px 10px #3b82f670; } /* blue, transparent */
+    50%  { box-shadow: 0 20px 20px 10px #fde04770; }    /* yellow, transparent */
+    75%  { box-shadow: -10px 10px 20px 10px #06b6d470; }/* cyan, transparent */
+    100% { box-shadow: 0 0 20px 10px #22c55e70; }      /* green, transparent */
+  }
+
+  .card {
+    @apply p-4 bg-white shadow-md rounded-lg;
+  }
+
+  .header {
+    @apply text-2xl font-bold mb-4;
+  }
+
+  .footer {
+    @apply text-sm text-gray-500 mt-8;
+  }
 }
