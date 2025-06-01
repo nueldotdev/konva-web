@@ -6,26 +6,26 @@ interface AnimationProps {
   bgColor?: string;
   textColor?: string;
 }
-const tences = [
-  "You meet someone at an event.",
-  "You share your card. Maybe your number.",
-  "You get home and forget their name.",
-  "It’s not just you.",
-  "Paper cards go missing.",
-  "Names get mixed up.",
-  "Leads disappear.",
-  "In a country where everyone is building something,",
-  "we need better ways to stay connected.",
-  "Konva is here to help.",
-];
+// const tences = [
+//   "You meet someone at an event.",
+//   "You share your card. Maybe your number.",
+//   "You get home and forget their name.",
+//   "It’s not just you.",
+//   "Paper cards go missing.",
+//   "Names get mixed up.",
+//   "Leads disappear.",
+//   "In a country where everyone is building something,",
+//   "we need better ways to stay connected.",
+//   "Konva is here to help.",
+// ];
 
 const Animation: React.FC<AnimationProps> = ({ texts, bgColor, textColor }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
   const [currentLine, setCurrentLine] = useState(-1);
-  const [backgroundColor, setBackgroundColor] = useState(bgColor || "black");
-  const [textCol, setTextCol] = useState(textColor || "#FFFFFF");
-  const [sentences, setSentences] = useState<string[]>(texts);
+  const [backgroundColor] = useState(bgColor || "black");
+  const [textCol] = useState(textColor || "#FFFFFF");
+  const [sentences] = useState<string[]>(texts);
 
   useEffect(() => {
     const observer = new window.IntersectionObserver(
