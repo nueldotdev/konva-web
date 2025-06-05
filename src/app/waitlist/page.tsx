@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 
 function WaitlistPage() {
+    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [submitted, setSubmitted] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -18,13 +19,14 @@ function WaitlistPage() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email }),
+                body: JSON.stringify({ email, name }),
             })
 
             if (!response.ok) throw new Error('Failed to join waitlist')
 
             setSubmitted(true)
             setEmail('')
+            setName('')
         } catch (err) {
             console.log(err);
             setError('Something went wrong. Please try again.')
@@ -49,6 +51,20 @@ function WaitlistPage() {
 
                 {!submitted ? (
                     <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+                        <div className="space-y-2">
+                            <label htmlFor="name" className="text-sm font-medium text-gray-700 block text-left">
+                                Name
+                            </label>
+                            <input
+                                id="name"
+                                type="text"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                placeholder="John Doe"
+                                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all"
+                                required
+                            />
+                        </div>
                         <div className="space-y-2">
                             <label htmlFor="email" className="text-sm font-medium text-gray-700 block text-left">
                                 Email address
