@@ -31,8 +31,8 @@ function WaitlistPage() {
             setEmail('')
             setName('')
         } catch (err: any) {
-            console.error(err)
-            setError(err.message || 'Something went wrong. Please try again.')
+            // console.error(err)
+            setError(err?.message || 'Something went wrong. Please try again.')
         } finally {
             setLoading(false)
         }
