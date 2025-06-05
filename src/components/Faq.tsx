@@ -28,7 +28,7 @@ function Faq() {
   ];
 
   return (
-    <div className="container mx-auto px-4 mt-8 py-12">
+    <div className="container mx-auto px-4 mt-2 pb-12">
       <div className='flex flex-col md:flex-row justify-between gap-8'>
         <div className="md:w-1/3">
           <h2 className="text-3xl font-bold">Questions you may<br />want to ask?</h2>

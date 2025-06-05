@@ -24,11 +24,11 @@ const tences = [
 
 function page() {
   return (
-    <div className="">
-      <div className="h-screen border flex flex-col justify-evenly space-y-8">
+    <div >
+      <div className="py-18 border flex flex-col h-screen justify-evenly md:space-y-16 ">
         {/* title */}
         <div className="flex items-center justify-center">
-          <h1 className="text-2xl font-bold">Konva</h1>
+          <h1 className="text-2xl  font-bold">Konva</h1>
         </div>
         {/* description */}
         <h1 className="text-4xl md:text-5xl lg:text-6xl text-center font-bold">
@@ -36,8 +36,8 @@ function page() {
             <span className="block">meet should never</span>
             <span className="block">be forgotten</span>
           </h1>
-        <div className="flex-col flex items-center justify-center space-y-4 mx-4">
-          <p className="text-base md:text-lg md:mt-6 text-center">
+        <div className="flex-col flex items-center mb-12 justify-center space-y-4 mx-4">
+          <p className="text-base md:text-lg  text-center">
             Konva helps you stay in touch after the handshake.
             <br className="hidden md:block" />
             Share your contact in seconds. No printing. No stress.
@@ -55,7 +55,7 @@ function page() {
         <Illustration />
       </div>
       {/* sub headline */}
-      <div className="mt-12 flex-col space-y-6 mx-4  items-center justify-center flex ">
+      <div className="md:my-16 my-8 flex-col space-y-6 mx-4  items-center justify-center flex ">
         <Animation texts={texts} bgColor={"transparent"} textColor={"black"} />
       </div>
       {/* faq */}

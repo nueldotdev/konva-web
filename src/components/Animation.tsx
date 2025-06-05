@@ -56,7 +56,7 @@ const Animation: React.FC<AnimationProps> = ({ texts, bgColor, textColor }) => {
 
   return (
     <div
-      className="h-screen overflow-hidden relative flex items-center justify-center"
+      className=" overflow-hidden relative flex items-center justify-center"
       style={{ backgroundColor: backgroundColor }}
     >
       <div
