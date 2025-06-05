@@ -14,7 +14,7 @@ function WaitlistPage() {
         setError('')
 
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_WAITLIST_ENDPOINT}`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/waitlist`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
