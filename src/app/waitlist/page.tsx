@@ -26,6 +26,7 @@ function WaitlistPage() {
             setSubmitted(true)
             setEmail('')
         } catch (err) {
+            console.log(err);
             setError('Something went wrong. Please try again.')
         } finally {
             setLoading(false)
@@ -92,9 +93,9 @@ function WaitlistPage() {
                     </form>
                 ) : (
                     <div className="mt-8 p-6 bg-green-50 border border-green-100 rounded-lg text-center">
-                        <h3 className="text-lg font-semibold text-green-800 mb-2">You're on the list!</h3>
+                        <h3 className="text-lg font-semibold text-green-800 mb-2">{"You're on the list!"}</h3>
                         <p className="text-green-700">
-                            Thank you for your interest. We'll notify you when we're ready to launch.
+                            {"Thank you for your interest. We'll notify you when we're ready to launch."}
                         </p>
                     </div>
                 )}
