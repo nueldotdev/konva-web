@@ -119,7 +119,7 @@ const Animation: React.FC<AnimationProps> = ({ texts, bgColor, textColor }) => {
             from {
               opacity: 0.1;
             }
-            to {git 
+            to {
               opacity: 1;
               filter: blur(0);
             }
