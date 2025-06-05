@@ -56,7 +56,7 @@ const Animation: React.FC<AnimationProps> = ({ texts, bgColor, textColor }) => {
 
   return (
     <div
-      className=" overflow-hidden relative flex items-center justify-center"
+      className="overflow-hidden h-full w-full relative flex items-center justify-center"
       style={{ backgroundColor: backgroundColor }}
     >
       <div
@@ -106,7 +106,7 @@ const Animation: React.FC<AnimationProps> = ({ texts, bgColor, textColor }) => {
           }
           .letter.animating {
             opacity: 0.1;
-            animation: letterInk 0.3s forwards;
+            animation: letterInk 0.1s forwards;
           }
           .letter.future {
             opacity: 0.1;
@@ -119,7 +119,7 @@ const Animation: React.FC<AnimationProps> = ({ texts, bgColor, textColor }) => {
             from {
               opacity: 0.1;
             }
-            to {
+            to {git 
               opacity: 1;
               filter: blur(0);
             }
