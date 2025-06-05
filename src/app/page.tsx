@@ -1,6 +1,8 @@
+"use client"
+
 import Illustration from "../components/Illustration";
 import Button from "../components/Button";
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "../components/Footer";
 import Faq from "../components/Faq";
 import Animation from "../components/Animation";
@@ -23,6 +25,13 @@ const tences = [
 
 
 function page() {
+
+  useEffect(() => {
+    console.log("ENV:", process.env.NEXT_PUBLIC_BACKEND_URL);
+  }, []);
+
+
+
   return (
     <div >
       <div className="py-18 border flex flex-col h-screen justify-evenly md:space-y-16">
