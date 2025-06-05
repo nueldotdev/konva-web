@@ -25,7 +25,7 @@ const tences = [
 function page() {
   return (
     <div >
-      <div className="py-18 border flex flex-col h-screen justify-evenly md:space-y-16 ">
+      <div className="py-18 border flex flex-col h-screen justify-evenly md:space-y-16">
         {/* title */}
         <div className="flex items-center justify-center">
           <h1 className="text-2xl  font-bold">Konva</h1>
@@ -49,13 +49,15 @@ function page() {
         </div>
       </div>
       {/* animation */}
-      <Animation texts={tences} bgColor={"black"} textColor={"#FFFFFF"} />
+      <div className="h-screen bg-black">
+        <Animation texts={tences} bgColor={"black"} textColor={"#FFFFFF"} />
+      </div>
       {/* illustration */}
       <div className="mt-8 md:mt-12">
         <Illustration />
       </div>
       {/* sub headline */}
-      <div className="md:my-16 my-8 flex-col space-y-6 mx-4  items-center justify-center flex ">
+      <div className="h-screen">
         <Animation texts={texts} bgColor={"transparent"} textColor={"black"} />
       </div>
       {/* faq */}
