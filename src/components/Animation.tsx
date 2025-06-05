@@ -59,11 +59,14 @@ const Animation: React.FC<AnimationProps> = ({ texts, bgColor, textColor }) => {
       className="h-screen overflow-hidden relative flex items-center justify-center"
       style={{ backgroundColor: backgroundColor }}
     >
-      <div ref={containerRef} className="w-[60%] flex flex-col justify-center">
+      <div
+        ref={containerRef}
+        className="w-[80%] sm:w-[60%] flex flex-col justify-center"
+      >
         {sentences.map((sentence, sIdx) => (
           <div
             key={sIdx}
-            className="text-xl md:text-2xl font-medium text-left py-3"
+            className="text-xl md:text-2xl font-medium text-left py-3 animated-line"
           >
             {sentence.split("").map((char, cIdx) => {
               const style = {
@@ -73,22 +76,22 @@ const Animation: React.FC<AnimationProps> = ({ texts, bgColor, textColor }) => {
               };
               if (sIdx < currentLine) {
                 return (
-                  <span key={cIdx} className="letter visible" style={style}>
+                  <p key={cIdx} className="letter visible" style={style}>
                     {char === " " ? "\u00A0" : char}
-                  </span>
+                  </p>
                 );
               }
               if (sIdx === currentLine) {
                 return (
-                  <span key={cIdx} className="letter animating" style={style}>
+                  <p key={cIdx} className="letter animating" style={style}>
                     {char === " " ? "\u00A0" : char}
-                  </span>
+                  </p>
                 );
               }
               return (
-                <span key={cIdx} className="letter future" style={style}>
+                <p key={cIdx} className="letter future" style={style}>
                   {char === " " ? "\u00A0" : char}
-                </span>
+                </p>
               );
             })}
           </div>
@@ -103,10 +106,14 @@ const Animation: React.FC<AnimationProps> = ({ texts, bgColor, textColor }) => {
           }
           .letter.animating {
             opacity: 0.1;
-            animation: letterInk 1s forwards;
+            animation: letterInk 0.3s forwards;
           }
           .letter.future {
             opacity: 0.1;
+          }
+          .animated-line {
+            white-space: pre-line;
+            word-break: keep-all;
           }
           @keyframes letterInk {
             from {
