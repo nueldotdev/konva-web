@@ -1,11 +1,14 @@
 "use client";
 import React from "react";
+import Link from "next/link";
 
 function Button() {
   return (
-    <button className="button">
-      Join the waitlist
-    </button>
+    <Link href="/waitlist" className="w-full md:w-auto">
+      <button className="button">
+        Join the waitlist
+      </button>
+    </Link>
   );
 }
 
