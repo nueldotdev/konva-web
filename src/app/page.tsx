@@ -24,7 +24,7 @@ const tences = [
     ]
 
 
-function page() {
+function Page() {
 
   useEffect(() => {
     console.log("ENV:", process.env.NEXT_PUBLIC_BACKEND_URL);
@@ -92,4 +92,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
