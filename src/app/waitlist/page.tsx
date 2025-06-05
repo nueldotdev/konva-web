@@ -14,7 +14,7 @@ function WaitlistPage() {
         setError('')
 
         try {
-            const response = await fetch('/api/waitlist', {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_WAITLIST_ENDPOINT}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -22,14 +22,17 @@ function WaitlistPage() {
                 body: JSON.stringify({ email, name }),
             })
 
-            if (!response.ok) throw new Error('Failed to join waitlist')
+            const data = await response.json()
 
+            if (!response.ok) {
+                throw new Error(data.error || 'Failed to join waitlist')
+            }
             setSubmitted(true)
             setEmail('')
             setName('')
-        } catch (err) {
-            console.log(err);
-            setError('Something went wrong. Please try again.')
+        } catch (err: any) {
+            console.error(err)
+            setError(err.message || 'Something went wrong. Please try again.')
         } finally {
             setLoading(false)
         }
