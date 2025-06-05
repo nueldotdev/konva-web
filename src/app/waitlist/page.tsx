@@ -73,7 +73,7 @@ function WaitlistPage() {
                             disabled={loading}
                             className="w-full bg-black text-white px-6 py-4 rounded-lg hover:bg-gray-900 
                                      transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed
-                                     font-medium text-base"
+                                     font-medium text-base button"
                         >
                             {loading ? (
                                 <span className="flex items-center justify-center">
